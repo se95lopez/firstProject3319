@@ -43,11 +43,11 @@ FOREIGN KEY (AgentId) REFERENCES Agent(AgentId)
 -- Create Purchase table (M:N relationship)
 CREATE TABLE Purchase(
 CustomerId VARCHAR(2),
-AgentId VARCHAR(2),
+ProductId VARCHAR(2),
 quantity INT,
 PRIMARY KEY (CustomerId, AgentId),
 FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId),
-FOREIGN KEY (AgentId) REFERENCES Agent(AgentId)
+FOREIGN KEY (ProductId) REFERENCES Product(ProductId)
 );
 
 SHOW TABLES;
