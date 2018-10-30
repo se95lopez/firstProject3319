@@ -13,7 +13,7 @@ SHOW TABLES;
 CREATE TABLE Product (
 ProductId VARCHAR(2) NOT NULL,
 Description VARCHAR(20),
-CostPerItem INT,
+CostPerItem DECIMAL(5,2),
 Stock INT,
 PRIMARY KEY (ProductId)
 );
