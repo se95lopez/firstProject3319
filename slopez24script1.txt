@@ -45,7 +45,7 @@ CREATE TABLE Purchase(
 CustomerId VARCHAR(2),
 ProductId VARCHAR(2),
 quantity INT,
-PRIMARY KEY (CustomerId, AgentId),
+PRIMARY KEY (CustomerId, ProductId),
 FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId),
 FOREIGN KEY (ProductId) REFERENCES Product(ProductId)
 );
