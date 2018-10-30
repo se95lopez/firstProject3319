@@ -2,6 +2,6 @@
 USE slopez24assign2db;
 LOAD DATA LOCAL INFILE 'loaddatafall2018.txt' INTO TABLE Product
 FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\r\n';
+LINES TERMINATED BY '\n';
 
 SELECT * FROM Product;
