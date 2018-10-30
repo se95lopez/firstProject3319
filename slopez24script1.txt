@@ -1,0 +1,53 @@
+-- Sebastian Lopez's File1 for Assignment2
+
+-- Create the database
+SHOW databases;
+DROP DATABASE IF EXISTS slopez24assign2db;
+CREATE DATABASE slopez24assign2db;
+USE slopez24assign2db;
+
+-- Create the tables for this database
+SHOW TABLES;
+
+--Creating product table
+CREATE TABLE Product (
+ProductId VARCHAR(2) NOT NULL,
+Description VARCHAR(20),
+CostPerItem INT,
+Stock INT,
+PRIMARY KEY (ProductId)
+);
+
+-- Create Agent Table
+CREATE TABLE Agent(
+AgentId VARCHAR (2) NOT NULL,
+FirstName VARCHAR(30),
+LastName VARCHAR(30),
+City VARCHAR(15),
+Commission DECIMAL(5,2),
+PRIMARY KEY (AgentId)
+);
+
+-- Create Customer Table
+CREATE TABLE Customer(
+CustomerId VARCHAR(2) NOT NULL,
+FirstName VARCHAR(30),
+LastName VARCHAR(30),
+City VARCHAR(15),
+PhoneNumber VARCHAR (10),
+AgentId VARCHAR(2),
+PRIMARY KEY (CustomerId),
+FOREIGN KEY (AgentId) REFERENCES Agent(AgentId)
+);
+
+-- Create Purchase table (M:N relationship)
+CREATE TABLE Purchase(
+CustomerId VARCHAR(2),
+AgentId VARCHAR(2),
+quantity INT,
+PRIMARY KEY (CustomerId, AgentId),
+FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId),
+FOREIGN KEY (AgentId) REFERENCES Agent(AgentId)
+);
+
+SHOW TABLES;
