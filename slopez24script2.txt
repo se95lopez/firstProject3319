@@ -1,0 +1,6 @@
+-- Loading data from file
+LOAD DATA LOCAL INFILE 'loaddatafall2018.txt' INTO TABLE Product
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\r\n';
+
+SELECT * FROM Product;
