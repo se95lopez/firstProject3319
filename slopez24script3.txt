@@ -1,3 +1,4 @@
+USE slopez24assign2db;
 -- 1.
 SELECT Description FROM Product;
 -- 2.
