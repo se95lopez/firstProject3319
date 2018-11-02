@@ -47,7 +47,7 @@ SELECT * FROM Customer;
 SELECT * FROM Purchase;
 
 -- Update Entries
-UPDATE Customer SET FirstName = "Wonder", LastName = "Woman" WHERE (FirstName = "Super" AND "LastName = Man"); 
+UPDATE Customer SET FirstName = "Wonder", LastName = "Woman" WHERE FirstName = "Super" ; 
 UPDATE Purchase, Customer SET Purchase.quantity = 5 WHERE (Customer.FirstName = "Sideshow" and Customer.LastName = "Bob");
 UPDATE Customer, Agent SET Customer.City = "Boston" WHERE Agent.FirstName = "Regis";
 
