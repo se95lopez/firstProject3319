@@ -35,7 +35,7 @@ From Agent, Customer WHERE Agent.AgentId = Customer.AgentId AND Agent.City = Cus
 SELECT SUM(quantity) AS "Total Knee Pads Purchased" FROM Purchase WHERE ProductId IN 
 (SELECT ProductId FROM Product WHERE Description = "Knee Pads");
 -- 14.
-SELECT COUNT(*) FROM Purchase GROUP BY ProductId HAVING COUNT(*) > 3 ;
+SELECT ProductId, COUNT(*) FROM Purchase GROUP BY ProductId HAVING COUNT(*) > 3 ;
 -- 15. 
 SELECT Agent.FirstName, Agent.LastName FROM Agent, Customer WHERE Customer.AgentId = Agent.AgentId
 AND Customer.CustomerId IN(SELECT CustomerId FROM Purchase, Product WHERE 
