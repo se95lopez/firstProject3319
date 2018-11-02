@@ -1,0 +1,41 @@
+-- 1.
+SELECT Description FROM Product;
+-- 2.
+SELECT DISTINCT City FROM Customer;
+-- 3.
+SELECT * FROM Agent ORDER BY City; 
+-- 4.
+SELECT FirstName, LastName FROM Cusutomer WHERE City = "Springfield";
+-- 5.
+SELECT Customer.LastName FROM Customer, Agent WHERE Customer.AgentId = Agent.AgentId 
+AND Agent.FirstName = "Regis";
+-- 6.
+SELECT Description FROM Product Where Description LIKE '%Pad%';
+-- 7.
+SELECT Customer.LastName, Product.Description, Purchase.quantity FROM Customer, Product, Purchase
+WHERE Customer.CustomerId = Purchase.CustomerId AND Purchase.ProductId = Product.ProductId;
+-- 8.
+SELECT SUM(Purchase.quantity) AS "Homer's Total Purchases" FROM Purchase WHERE
+Purchase.CustomerId IN (SELECT CustomerId FROM Customer WHERE FirstName = "Homer");
+-- 9.
+SELECT FirstName, LastName, SUM(Purchase.quantity) AS Total FROM Customer, Purchase WHERE 
+Customer.CustomerId = Purchase.CustomerId GROUP BY FirstName;
+-- 10.
+SELECT Product.Description, Product.Stock From Product WHERE Product.ProductId
+NOT IN (SELECT Purchase.ProductId FROM Purchase);
+-- 11.
+SELECT Product.Description, Product.Stock FROM Product WHERE Product.ProductId
+ NOT IN (SELECT ProductId FROM Customer INNER JOIN Purchase ON Purchase.CustomerId = Customer.CustomerId 
+WHERE FirstName = "Fred" AND LastName = "Flinstone");
+-- 12.
+SELECT Agent.FirstName, Agent.LastName, Customer.FirstName, Customer.LastName 
+From Agent, Customer WHERE Agent.AgentId = Customer.AgentId AND Agent.City = Customer.City;
+-- 13.
+SELECT SUM(quantity) AS "Total Knee Pads Purchased" FROM Purchase WHERE ProductId IN 
+(SELECT ProductId FROM Product WHERE Description = "Knee Pads");
+-- 14.
+SELECT COUNT(*) FROM Purchase GROUP BY ProductId HAVING COUNT(*) > 3 ;
+-- 15. 
+SELECT Agent.FirstName, Agent.LastName FROM Agent, Customer WHERE Customer.AgentId = Agent.AgentId
+AND Customer.CustomerId IN(SELECT CustomerId FROM Purchase, Product WHERE 
+Product.Description = "Knee Pads" AND Product.ProductId = Purchase.ProductId);
