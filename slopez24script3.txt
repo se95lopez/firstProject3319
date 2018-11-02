@@ -6,7 +6,7 @@ SELECT DISTINCT City FROM Customer;
 -- 3.
 SELECT * FROM Agent ORDER BY City; 
 -- 4.
-SELECT FirstName, LastName FROM Cusutomer WHERE City = "Springfield";
+SELECT FirstName, LastName FROM Customer WHERE City = "Springfield";
 -- 5.
 SELECT Customer.LastName FROM Customer, Agent WHERE Customer.AgentId = Agent.AgentId 
 AND Agent.FirstName = "Regis";
