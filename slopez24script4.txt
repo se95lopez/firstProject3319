@@ -1,0 +1,25 @@
+USE slopez24assign2db;
+
+-- Show all data in all tables
+SELECT * FROM Product;
+SELECT * FROM Agent;
+SELECT * FROM Customer;
+SELECT * FROM Purchase;
+
+-- Create View
+CREATE VIEW customerTotalPurchase AS SELECT FirstName, LastName, Description, quantity, CostPerItem, SUM(quantity * CostPerItem) AS Total FROM Customer, Product, Purchase WHERE Customer.CustomerId = Purchase.CustomerId AND Purchase.ProductId = Product.ProductId
+GROUP BY FirstName, Description ORDER BY LastName;
+
+-- Select all rows from view
+SELECT * FROM customerTotalPurchase;
+
+-- Select Only rows where customer spent over 100
+SELECT * FROM customerTotalPurchase HAVING Total > 100;
+
+-- Delete my product and show new table
+DELETE FROM Product WHERE Description = "Soccer Ball";
+SELECT * FROM Product;
+
+-- Delete All agents from springfield
+DELETE FROM Agent WHERE City = "Springfield";
+-- These agents weren't deleted because their IDs are also present in the customer table and it would leave those customers without any agents. 
