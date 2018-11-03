@@ -1,0 +1,234 @@
+--------------
+LOAD DATA LOCAL INFILE 'loaddatafall2018.txt' INTO TABLE Product
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+--------------
+
+--------------
+SELECT * FROM Product
+--------------
+
+ProductId	Description	CostPerItem	Stock
+11	Bike	150.00	200
+12	Socks	2.00	100
+78	Knee Pads	12.15	70
+88	Roller Blades	75.00	89
+99	Helmet	29.00	30
+--------------
+INSERT INTO Product VALUES ("66", "Elbow Pads", 14.25, 120)
+--------------
+
+--------------
+INSERT INTO Product VALUES ("9","Soccer Ball", 20.22, 80 )
+--------------
+
+--------------
+INSERT INTO Agent VALUES ("99", "Hugh", "Grant", "Springfield", 16)
+--------------
+
+--------------
+INSERT INTO Agent VALUES ("22", "Courtney", "Cox", "New York", 25)
+--------------
+
+--------------
+INSERT INTO Agent VALUES ("66", "Rosie", "ODonell", "Ottawa", 100)
+--------------
+
+--------------
+INSERT INTO Agent VALUES ("33", "David", "Letterman", "Bedrock", 100)
+--------------
+
+--------------
+INSERT INTO Agent VALUES ("11", "Regis", "Philbin", "Boston", 33)
+--------------
+
+--------------
+INSERT INTO Agent VALUES ("12", "Rosie", "Cox", "Ottawa", 50)
+--------------
+
+--------------
+INSERT INTO Agent VALUES ("10", "Sebastian", "Lopez", "Bogota", 110)
+--------------
+
+--------------
+INSERT INTO Customer VALUES ("21", "Homer", "Simpson", "Springfield", "686-8956", "99")
+--------------
+
+--------------
+INSERT INTO Customer VALUES ("31", "Sideshow", "Bob", "Springfield", "686-5555", "66")
+--------------
+
+--------------
+INSERT INTO Customer VALUES ("12", "Monty", "Burns", "Springfield", "789-0000", "99")
+--------------
+
+--------------
+INSERT INTO Customer VALUES ("15", "Fred", "Flinstone", "Bedrock", "777-2345", "11")
+--------------
+
+--------------
+INSERT INTO Customer VALUES ("13", "Super", "Man", "Krypton", "888-1234", "33")
+--------------
+
+--------------
+INSERT INTO Customer VALUES ("10", "Barney", "Rubble", "Bedrock", "777-1234", "11")
+--------------
+
+--------------
+INSERT INTO Customer VALUES ("14", "Peter", "Griffin", "Providence", "987-4567", "99")
+--------------
+
+--------------
+INSERT INTO Purchase VALUES ("21", "99", 40 )
+--------------
+
+--------------
+INSERT INTO Purchase VALUES ("21", "12", 14 )
+--------------
+
+--------------
+INSERT INTO Purchase VALUES ("21", "66", 10 )
+--------------
+
+--------------
+INSERT INTO Purchase VALUES ("31", "99", 1 )
+--------------
+
+--------------
+INSERT INTO Purchase VALUES ("31", "12", 2)
+--------------
+
+--------------
+INSERT INTO Purchase VALUES ("31", "78", 4 )
+--------------
+
+--------------
+INSERT INTO Purchase VALUES ("31", "66", 2 )
+--------------
+
+--------------
+INSERT INTO Purchase VALUES ("15", "66", 2 )
+--------------
+
+--------------
+INSERT INTO Purchase VALUES ("15", "78", 2)
+--------------
+
+--------------
+INSERT INTO Purchase VALUES ("14", "66", 19 )
+--------------
+
+--------------
+SELECT * FROM Product
+--------------
+
+ProductId	Description	CostPerItem	Stock
+11	Bike	150.00	200
+12	Socks	2.00	100
+66	Elbow Pads	14.25	120
+78	Knee Pads	12.15	70
+88	Roller Blades	75.00	89
+9	Soccer Ball	20.22	80
+99	Helmet	29.00	30
+--------------
+SELECT * FROM Agent
+--------------
+
+AgentId	FirstName	LastName	City	Commission
+10	Sebastian	Lopez	Bogota	110.00
+11	Regis	Philbin	Boston	33.00
+12	Rosie	Cox	Ottawa	50.00
+22	Courtney	Cox	New York	25.00
+33	David	Letterman	Bedrock	100.00
+66	Rosie	ODonell	Ottawa	100.00
+99	Hugh	Grant	Springfield	16.00
+--------------
+SELECT * FROM Customer
+--------------
+
+CustomerId	FirstName	LastName	City	PhoneNumber	AgentId
+10	Barney	Rubble	Bedrock	777-1234	11
+12	Monty	Burns	Springfield	789-0000	99
+13	Super	Man	Krypton	888-1234	33
+14	Peter	Griffin	Providence	987-4567	99
+15	Fred	Flinstone	Bedrock	777-2345	11
+21	Homer	Simpson	Springfield	686-8956	99
+31	Sideshow	Bob	Springfield	686-5555	66
+--------------
+SELECT * FROM Purchase
+--------------
+
+CustomerId	ProductId	quantity
+14	66	19
+15	66	2
+15	78	2
+21	12	14
+21	66	10
+21	99	40
+31	12	2
+31	66	2
+31	78	4
+31	99	1
+--------------
+UPDATE Customer SET FirstName = "Wonder", LastName = "Woman" WHERE FirstName = "Super"
+--------------
+
+--------------
+UPDATE Purchase, Customer SET Purchase.quantity = 5 WHERE Purchase.CustomerId IN (SELECT Customer.CustomerId FROM Customer WHERE FirstName = "Sideshow")
+--------------
+
+--------------
+UPDATE Customer, Agent SET Customer.City = "Boston" WHERE Customer.AgentId IN (SELECT AgentId FROM Agent WHERE Agent.FirstName = "Regis")
+--------------
+
+--------------
+SELECT * FROM Product
+--------------
+
+ProductId	Description	CostPerItem	Stock
+11	Bike	150.00	200
+12	Socks	2.00	100
+66	Elbow Pads	14.25	120
+78	Knee Pads	12.15	70
+88	Roller Blades	75.00	89
+9	Soccer Ball	20.22	80
+99	Helmet	29.00	30
+--------------
+SELECT * FROM Agent
+--------------
+
+AgentId	FirstName	LastName	City	Commission
+10	Sebastian	Lopez	Bogota	110.00
+11	Regis	Philbin	Boston	33.00
+12	Rosie	Cox	Ottawa	50.00
+22	Courtney	Cox	New York	25.00
+33	David	Letterman	Bedrock	100.00
+66	Rosie	ODonell	Ottawa	100.00
+99	Hugh	Grant	Springfield	16.00
+--------------
+SELECT * FROM Customer
+--------------
+
+CustomerId	FirstName	LastName	City	PhoneNumber	AgentId
+10	Barney	Rubble	Boston	777-1234	11
+12	Monty	Burns	Springfield	789-0000	99
+13	Wonder	Woman	Krypton	888-1234	33
+14	Peter	Griffin	Providence	987-4567	99
+15	Fred	Flinstone	Boston	777-2345	11
+21	Homer	Simpson	Springfield	686-8956	99
+31	Sideshow	Bob	Springfield	686-5555	66
+--------------
+SELECT * FROM Purchase
+--------------
+
+CustomerId	ProductId	quantity
+14	66	19
+15	66	2
+15	78	2
+21	12	14
+21	66	10
+21	99	40
+31	12	5
+31	66	5
+31	78	5
+31	99	5

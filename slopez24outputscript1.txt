@@ -16,6 +16,26 @@ CREATE DATABASE slopez24assign2db
 --------------
 
 --------------
+GRANT USAGE ON *.* TO 'ta'@'localhost'
+--------------
+
+--------------
+DROP USER 'ta'@'localhost'
+--------------
+
+--------------
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319'
+--------------
+
+--------------
+GRANT ALL PRIVILEGES ON slopez24assign2db.* TO 'ta'@'localhost'
+--------------
+
+--------------
+FLUSH PRIVILEGES
+--------------
+
+--------------
 SHOW TABLES
 --------------
 
@@ -56,11 +76,11 @@ FOREIGN KEY (AgentId) REFERENCES Agent(AgentId)
 --------------
 CREATE TABLE Purchase(
 CustomerId VARCHAR(2),
-AgentId VARCHAR(2),
+ProductId VARCHAR(2),
 quantity INT,
-PRIMARY KEY (CustomerId, AgentId),
+PRIMARY KEY (CustomerId, ProductId),
 FOREIGN KEY (CustomerId) REFERENCES Customer(CustomerId),
-FOREIGN KEY (AgentId) REFERENCES Agent(AgentId)
+FOREIGN KEY (ProductId) REFERENCES Product(ProductId)
 )
 --------------
 
