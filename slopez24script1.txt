@@ -10,7 +10,7 @@ USE slopez24assign2db;
 GRANT USAGE ON *.* TO 'ta'@'localhost';
 DROP USER 'ta'@'localhost';
 CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319';
-GRANT ALL PRIVILEGES ON slopez24assign2db *.* TO 'ta'@'localhost';
+GRANT ALL PRIVILEGES ON slopez24assign2db.* TO 'ta'@'localhost';
 FLUSH PRIVILEGES;
 
 -- Create the tables for this database
